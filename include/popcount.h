@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-int popcount64(uint64_t x);
-int popcount64i(uint64_t *x, int n);
+int popcount64(volatile uint64_t x);
+int popcount64i(volatile uint64_t *x, int n);
 
 #endif

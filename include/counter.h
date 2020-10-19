@@ -5,7 +5,7 @@
 
 // This struct defines a section of memory to weigh
 struct workload {
-	uint64_t *data;
+	volatile uint64_t *data;
 	int n;
 };
 
@@ -28,12 +28,12 @@ struct thread_args {
  * 	struct **workload result - A pointer to an array of workloads, where the
  * 		result of this function will be stored.
  */
-void make_workloads(uint64_t *data, int nmemb, int div,
+void make_workloads(volatile uint64_t *data, int nmemb, int div,
 		struct workload *result);
 
 void *run_memclear64(void *data);
 void *run_popcount64(void *data);
-void threaded_memclear64(uint64_t *data, int nmemb, int nthreads);
-uint64_t threaded_popcount64(uint64_t *data, int nmemb, int nthreads);
+void threaded_memclear64(volatile uint64_t *data, int nmemb, int nthreads);
+uint64_t threaded_popcount64(volatile uint64_t *data, int nmemb, int nthreads);
 
 #endif

@@ -12,7 +12,7 @@ const uint64_t h01 = 0x0101010101010101;
 // This function returns the number of bits set in a given uint64_t. It is
 // the fastest known algorithm for doing this on a machine with fast
 // multiplication.
-inline int popcount64(uint64_t x) {
+inline int popcount64(volatile uint64_t x) {
 	x -= (x >> 1) & m1;
 	x = (x & m2) + ((x >> 2) & m2);
 	x = (x + (x >> 4)) & m4;
@@ -21,7 +21,7 @@ inline int popcount64(uint64_t x) {
 
 // This function performs the popcount operation on a given array of uint64_t's
 // to a given value (exlusive).
-int popcount64i(uint64_t *x, int n) {
+int popcount64i(volatile uint64_t *x, int n) {
 	int sum = 0;
 	for (int i = 0; i < n; i++)
 		sum += popcount64(x[i]);
