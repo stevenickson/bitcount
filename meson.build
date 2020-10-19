@@ -6,7 +6,7 @@ subdir('src')
 
 thread_dep = dependency('threads')
 
-bitcount = library('bitcount', project_sources, include_directories: inc,
+bitcount = static_library('bitcount', project_sources, include_directories: inc,
 	dependencies: thread_dep)
 
 bitcount_dep = declare_dependency(include_directories: inc,
